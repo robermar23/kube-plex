@@ -2,14 +2,14 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  repository: plexinc/pms-docker
+  repository: mauroniewolskicesca/pms-docker-arm64
   tag: 1.10.1.4602-f54242b6b
   pullPolicy: IfNotPresent
 
 kubePlex:
   enabled: true
   image:
-    repository: quay.io/munnerz/kube-plex
+    repository: mauroniewolskicesca/kube-plex-arm64
     tag: latest
     pullPolicy: Always
 
@@ -61,7 +61,7 @@ rbac:
   ## serviceAccountName: ""
 
 nodeSelector:
-  beta.kubernetes.io/arch: amd64
+  beta.kubernetes.io/arch: arm64
 
 persistence:
   transcode:
