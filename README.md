@@ -67,3 +67,5 @@ NAME                              READY     STATUS    RESTARTS   AGE
 plex-kube-plex-75b96cdcb4-skrxr   1/1       Running   0          14m
 pms-elastic-transcoder-7wnqk      1/1       Running   0          8m
 ```
+
+env GOOS=linux GOOARCH=arm GOARM=5 go build -mod=mod -a -installsuffix cgo -o kube-plex_linux_arm
