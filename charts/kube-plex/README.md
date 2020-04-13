@@ -15,12 +15,12 @@ The following tables lists the configurable parameters of the Plex chart and the
 | `kubePlex.image.pullPolicy`         | Image pull policy | `IfNotPresent` |
 | `claimToken`                 | Plex Claim Token to authenticate your acount | `` |
 | `timezone`                 | Timezone plex instance should run as, e.g. 'America/New_York' | `Europe/London` |
-| `Service.type`          | Kubernetes service type for the plex GUI/API | `ClusterIP` |
-| `Service.port`          | Kubernetes port where the plex GUI/API is exposed| `32400` |
-| `Service.annotations`   | Service annotations for the Plex GUI | `{}` |
-| `Service.labels`        | Custom labels | `{}` |
-| `Service.loadBalancerIP` | Loadbalance IP for the Plex GUI | `{}` |
-| `Service.loadBalancerSourceRanges` | List of IP CIDRs allowed access to load balancer (if supported)      | None
+| `service.type`          | Kubernetes service type for the plex GUI/API | `ClusterIP` |
+| `service.port`          | Kubernetes port where the plex GUI/API is exposed| `32400` |
+| `service.annotations`   | Service annotations for the Plex GUI | `{}` |
+| `service.labels`        | Custom labels | `{}` |
+| `service.loadBalancerIP` | Loadbalance IP for the Plex GUI | `{}` |
+| `service.loadBalancerSourceRanges` | List of IP CIDRs allowed access to load balancer (if supported)      | None
 | `ingress.enabled`              | Enables Ingress | `false` |
 | `ingress.annotations`          | Ingress annotations | `{}` |
 | `ingress.labels`               | Custom labels                       | `{}`
@@ -34,14 +34,26 @@ The following tables lists the configurable parameters of the Plex chart and the
 | `persistence.transcode.claimName`| Use an existing PVC to persist data | `nil` |
 | `persistence.transcode.subPath` | SubPath to use for existing Claim | `nil` |
 | `persistence.transcode.storageClass` | Type of persistent volume claim | `-` |
+| `persistence.transcode.accessMode` | Persistent volume access mode | `ReadWriteMany` |
 | `persistence.data.size`         | Size of persistent volume claim | `40Gi` |
-| `persistence.data.existingClaim`| Use an existing PVC to persist data | `nil` |
+| `persistence.data.claimName`| Use an existing PVC to persist data | `nil` |
 | `persistence.data.subPath` | SubPath to use for existing Claim | `nil` |
 | `persistence.data.storageClass` | Type of persistent volume claim | `-` |
+| `persistence.data.accessMode` | Persistent volume access mode | `ReadWriteMany` |
+| `persistence.extraData` | Extra data mounts.  Should be an array of items matching persistence.data entries | `[]` |
 | `persistence.config.size`         | Size of persistent volume claim | `20Gi` |
-| `persistence.config.existingClaim`| Use an existing PVC to persist data | `nil` |
+| `persistence.config.claimName`| Use an existing PVC to persist data | `nil` |
 | `persistence.config.subPath` | SubPath to use for existing Claim | `nil` |
 | `persistence.config.storageClass` | Type of persistent volume claim | `-` |
+| `persistence.config.accessMode` | Persistent volume access mode | `ReadWriteMany` |
 | `resources`                | CPU/Memory resource requests/limits | `{}` |
+| `proxy.enable`           | use to enable PMS proxy environmental variable  | `{false}` |
+| `proxy.http`           | HTTP_PROXY value 'http://proxy.lan:8080'  | `{}` |
+| `proxy.https`           | HTTPS_PROXY value 'http://proxy.lan:8080'  | `{}` |
+| `proxy.noproxy`           | NO_PROXY value 'localhost,127.0.0.1,10.96.0.0/12,10.244.0.0/12'  | `{}` |
+| `tolerations`           | Pod tolerations  | `[]` |
+| `affinity`           | Pod affinity configuration  | `{}` |
+| `podAnnotations`           | Key-value pairs to add as pod annotations  | `{}` |
+| `deploymentAnnotations`           | Key-value pairs to add as deployment annotations  | `{}` |
 
 Read through the [values.yaml](values.yaml) file. It has several commented out suggested values.
